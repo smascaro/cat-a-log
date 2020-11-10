@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:binding="http://schemas.android.com/bindings">
+
+    <data>
+
+        <variable
+            name="breed"
+            type="com.smascaro.listdetail.list.model.Breed" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/cat_breed_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@{breed.name}"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/cat_breed_item_short_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cat_breed_item_name"
+            android:layout_alignParentStart="true"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif"
+            android:maxLines="2"
+            android:text="@{breed.temperament}"
+            binding:expandOnClick="true"
+            android:textSize="14sp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/cat_breed_item_short_desc">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cat_breed_item_pill_life_expectancy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="26dp"
+                    app:cardBackgroundColor="#53f"
+                    app:cardCornerRadius="13dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="8dp"
+                        android:text="@{breed.lifespan.toString()}"
+                        android:textColor="@color/white" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <Space
+                    android:id="@+id/cat_breed_item_pill_space"
+                    android:layout_width="8dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/cat_breed_item_pill_life_expectancy" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cat_breed_item_pill_weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="26dp"
+                    android:layout_toEndOf="@id/cat_breed_item_pill_space"
+                    app:cardBackgroundColor="#53f"
+                    app:cardCornerRadius="13dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="8dp"
+                        android:text="@{breed.weight.toString()}"
+                        android:textColor="@color/white" />
+                </com.google.android.material.card.MaterialCardView>
+            </RelativeLayout>
+        </HorizontalScrollView>
+    </RelativeLayout>
+</layout>

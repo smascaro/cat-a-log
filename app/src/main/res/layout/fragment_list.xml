@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:binding="http://schemas.android.com/bindings"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.smascaro.listdetail.list.viewmodel.ListViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".list.view.ListFragment">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/fail_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:visibility="@{vm.didLoadFail ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/loading_fail" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/fail_image"
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="@{vm.didLoadFail ? View.VISIBLE : View.INVISIBLE}"
+            android:text="@{vm.failReason}"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:visibility="@{vm.isLoadingData ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading_cat" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fragment_list_recycler_items"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            binding:data="@{vm.breeds}"
+            tools:listitem="@layout/cat_breed_item" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
